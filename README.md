@@ -6,7 +6,7 @@ This repository is a Homebrew Tap for [Toitlang](https://toitlang.org).
 
 `brew install toitlang/toit/<formula>`
 
-Or `brew tap toitlang/toit` and then `brew install jaguar`.
+Or `brew tap toitlang/toit` and then `brew install jag`.
 
 Or install via URL (which will not receive updates):
 
