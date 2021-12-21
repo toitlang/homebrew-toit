@@ -1,11 +1,18 @@
 class Jaguar < Formula
   desc "Live reloading for your ESP32"
   homepage "https://github.com/toitlang/jaguar"
-  url "https://github.com/toitlang/jaguar.git", tag: "v0.3.2", revision: "f925bae2197a20ba92a54e4631bf3bb64ddc2417"
+  url "https://github.com/toitlang/jaguar/archive/refs/tags/v0.3.2.tar.gz"
+  sha256 "0aedb501b31bb9c900d69d248ce0c7ba5d85f690e90c706933a7258c626387b9"
   license "MIT"
   head "https://github.com/toitlang/jaguar.git", branch: "main"
 
   depends_on "go" => :build
+
+  livecheck do
+    url :stable
+    strategy :github_latest
+    regex(%r{href=.*?/tag/v?(\d+(?:[._]\d+)+)["' >]}i)
+  end
 
   def install
     rm_rf ".brew_home"
@@ -13,14 +20,14 @@ class Jaguar < Formula
     system "make", "jag"
     bin.install "build/jag"
 
-    output = Utils.safe_popen_read(bin/"helm", "completion", "bash")
-    (bash_completion/"helm").write output
+    output = Utils.safe_popen_read(bin/"jag", "completion", "bash")
+    (bash_completion/"jag").write output
 
-    output = Utils.safe_popen_read(bin/"helm", "completion", "zsh")
-    (zsh_completion/"_helm").write output
+    output = Utils.safe_popen_read(bin/"jag", "completion", "zsh")
+    (zsh_completion/"_jag").write output
 
-    output = Utils.safe_popen_read(bin/"helm", "completion", "fish")
-    (fish_completion/"helm.fish").write output
+    output = Utils.safe_popen_read(bin/"jag", "completion", "fish")
+    (fish_completion/"jag.fish").write output
   end
 
   test do
