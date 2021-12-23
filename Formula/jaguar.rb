@@ -10,13 +10,13 @@ class Jaguar < Formula
   license "MIT"
   head "https://github.com/toitlang/jaguar.git", branch: "main"
 
-  depends_on "go" => :build
-
   livecheck do
     url :stable
     strategy :github_latest
     regex(%r{href=.*?/tag/v?(\d+(?:[._]\d+)+)["' >]}i)
   end
+
+  depends_on "go" => :build
 
   def install
     rm_rf ".brew_home"
