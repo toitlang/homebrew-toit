@@ -1,15 +1,22 @@
-# Homebrew Tap for Toitlang
+# Homebrew tap for the Toit language
 
-This repository is a Homebrew Tap for [Toitlang](https://toitlang.org).
+This repository is a Homebrew tap for the [Toit language](https://toitlang.org).
 
 ## How do I install these formulae?
 
-`brew install toitlang/toit/<formula>`
+The easiest way to install the [Jaguar](https://github.com/toitlang/jaguar) development
+environment for Toit using Homebrew is to do:
 
-Or `brew tap toitlang/toit` and then `brew install jag`.
+``` sh
+brew install toitlang/toit/jag`
+```
 
-Or install via URL (which will not receive updates):
+Alternatively, you can use `brew tap toitlang/toit` and then `brew install jag`.
+
+----
+
+It is also an option to install via URL, but then you will not get any updates through Homebrew:
 
 ```
-brew install https://raw.githubusercontent.com/toitlang/homebrew-toit/master/Formula/<formula>.rb
+brew install https://raw.githubusercontent.com/toitlang/homebrew-toit/master/Formula/jaguar.rb
 ```
