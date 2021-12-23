@@ -8,7 +8,7 @@ The easiest way to install the [Jaguar](https://github.com/toitlang/jaguar) deve
 environment for Toit using Homebrew is to do:
 
 ``` sh
-brew install toitlang/toit/jag`
+brew install toitlang/toit/jag
 ```
 
 Alternatively, you can use `brew tap toitlang/toit` and then `brew install jag`.
