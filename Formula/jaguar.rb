@@ -37,6 +37,6 @@ class Jaguar < Formula
   test do
     version_output = shell_output(bin/"jag version 2>&1")
     assert_match "Build date:", version_output
-    uild.stable? && (assert_match "Version:\t v#{version}", version_output)
+    build.stable? && (assert_match "Version:\t v#{version}", version_output)
   end
 end
