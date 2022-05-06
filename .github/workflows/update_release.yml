@@ -1,0 +1,54 @@
+name: update_release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "The version of the release"
+        required: true
+        type: string
+
+  repository_dispatch:
+    # Gets triggered by toitlang/jaguar whenever a release is created.
+    types: [new-release]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Version constant
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          if [ "$VERSION" == "" ]; then
+            VERSION=${{ github.event.client_payload.ref }}
+          fi
+          if [ "$VERSION" == "" ]; then
+            echo "Couldn't determine version"
+            exit 1
+          fi
+          ARTIFACT=$VERSION.tar.gz
+          URL="https://github.com/toitlang/jaguar/archive/refs/tags/$ARTIFACT"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "ARTIFACT=$ARTIFACT" >> $GITHUB_ENV
+          echo "URL=$URL" >> $GITHUB_ENV
+
+      - name: Download artifact
+        run: |
+          wget $URL
+
+      - name: Update files
+        run: |
+          SHA256=$(sha256sum $ARTIFACT | cut -d " " -f1)
+          sed -i "s/sha256 \".*/sha256 \"$SHA256\"/" Formula/jaguar.rb
+          sed -i "s,url \"https:/.*,url \"$URL\"," Formula/jaguar.rb
+          git diff
+
+      - name: Push
+        run: |
+          git config --global user.name 'Leon Gungadin Mogensen'
+          git config --global user.email 'leon@toit.io'
+          git commit -am "Update to $VERSION"
+          git push
