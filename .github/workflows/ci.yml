@@ -1,15 +1,7 @@
 name: brew test-bot
 on:
   push:
-    branches:
-      - main
-    paths:
-      - "**.rb"
-      - .github/workflows/ci.yml
-  pull_request:
-    paths:
-      - "**.rb"
-      - .github/workflows/ci.yml
+
 jobs:
   test-bot:
     strategy:
