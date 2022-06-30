@@ -21,7 +21,7 @@ class Jaguar < Formula
   def install
     rm_rf ".brew_home"
 
-    system "make", "jag"
+    system "make", "JAG_BUILD_RELEASE=1", "jag"
     bin.install "build/jag"
 
     output = Utils.safe_popen_read(bin/"jag", "completion", "bash")
