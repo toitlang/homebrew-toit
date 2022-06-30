@@ -5,8 +5,8 @@
 class Jaguar < Formula
   desc "Live reloading for your ESP32"
   homepage "https://github.com/toitlang/jaguar"
-  url "https://github.com/toitlang/jaguar/archive/refs/tags/v1.2.6.tar.gz"
-  sha256 "cb12bf5b94ed0d46d421a4dd0854a70edf52a80e29a70f9bc33c4c12f93e2219"
+  url "https://github.com/toitlang/jaguar/archive/refs/tags/v1.2.7.tar.gz"
+  sha256 "f5b63c2d4518c1f4d899f90e87b9a076b156e563134a4e471f4595a992a5406e"
   license "MIT"
   head "https://github.com/toitlang/jaguar.git", branch: "main"
 
