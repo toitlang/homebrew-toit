@@ -24,18 +24,18 @@ class Jaguar < Formula
     system "make", "JAG_BUILD_RELEASE=1", "jag"
     bin.install "build/jag"
 
-    output = Utils.safe_popen_read(bin/"jag", "completion", "bash")
+    output = Utils.safe_popen_read(bin/"jag", "--no-analytics", "completion", "bash")
     (bash_completion/"jag").write output
 
-    output = Utils.safe_popen_read(bin/"jag", "completion", "zsh")
+    output = Utils.safe_popen_read(bin/"jag", "--no-analytics", "completion", "zsh")
     (zsh_completion/"_jag").write output
 
-    output = Utils.safe_popen_read(bin/"jag", "completion", "fish")
+    output = Utils.safe_popen_read(bin/"jag", "--no-analytics", "completion", "fish")
     (fish_completion/"jag.fish").write output
   end
 
   test do
-    version_output = shell_output(bin/"jag version 2>&1")
+    version_output = shell_output(bin/"jag --no-analytics version 2>&1")
     assert_match "Build date:", version_output
     build.stable? && (assert_match "Version:\t v#{version}", version_output)
   end
