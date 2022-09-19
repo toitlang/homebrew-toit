@@ -24,14 +24,7 @@ class Jaguar < Formula
     system "make", "JAG_BUILD_RELEASE=1", "jag"
     bin.install "build/jag"
 
-    output = Utils.safe_popen_read(bin/"jag", "--no-analytics", "completion", "bash")
-    (bash_completion/"jag").write output
-
-    output = Utils.safe_popen_read(bin/"jag", "--no-analytics", "completion", "zsh")
-    (zsh_completion/"_jag").write output
-
-    output = Utils.safe_popen_read(bin/"jag", "--no-analytics", "completion", "fish")
-    (fish_completion/"jag.fish").write output
+    generate_completions_from_executable(bin/"jag", "--no-analytics", "completion")
   end
 
   test do
