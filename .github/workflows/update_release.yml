@@ -37,7 +37,7 @@ jobs:
 
       - name: Download artifact
         run: |
-          wget $URL
+          wget "$URL"
 
       - name: Update files
         run: |
